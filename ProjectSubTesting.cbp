@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ProjectSubTesting" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="Core/" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/ProjectSubTesting" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="Core" />
+					<Add directory="./" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/ProjectSubTesting" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="Core" />
+					<Add directory="./" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="Core/Button.cpp" />
+		<Unit filename="Core/Button.h" />
+		<Unit filename="Core/CommonFunc.cpp" />
+		<Unit filename="Core/CommonFunc.h" />
+		<Unit filename="Core/Global.cpp" />
+		<Unit filename="Core/Global.h" />
+		<Unit filename="Core/Player.cpp" />
+		<Unit filename="Core/Player.h" />
+		<Unit filename="Core/Text.cpp" />
+		<Unit filename="Core/Text.h" />
+		<Unit filename="Core/Threat.cpp" />
+		<Unit filename="Core/Threat.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

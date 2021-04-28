@@ -1,0 +1,94 @@
+# depslib dependency file v1.0
+1619512571 source:d:\laptrinh\projectsubtesting\core\commonfunc.cpp
+	"CommonFunc.h"
+
+1619512571 d:\laptrinh\projectsubtesting\core\commonfunc.h
+	"Global.h"
+
+1619512571 source:d:\laptrinh\projectsubtesting\main.cpp
+	"Threat.h"
+	"Player.h"
+	"Global.h"
+	"Button.h"
+	"SDL_mixer.h"
+
+1619451335 d:\laptrinh\projectsubtesting\core\global.h
+	<SDL.h>
+	<SDL_image.h>
+	<cstdlib>
+	<string>
+	<iostream>
+	<ctime>
+
+1618072497 source:d:\laptrinh\projectsubtesting\core\global.cpp
+	"Global.h"
+
+1619441165 source:d:\laptrinh\projectsubtesting\core\player.cpp
+	"Player.h"
+
+1619441157 d:\laptrinh\projectsubtesting\core\player.h
+	"CommonFunc.h"
+
+1619510631 source:d:\laptrinh\projectsubtesting\core\threat.cpp
+	"Threat.h"
+
+1619510631 d:\laptrinh\projectsubtesting\core\threat.h
+	"CommonFunc.h"
+	"Player.h"
+
+1619510631 source:d:\laptrinh\projectsubtesting\core\button.cpp
+	"Button.h"
+
+1619444052 d:\laptrinh\projectsubtesting\core\button.h
+	"Global.h"
+
+1619541750 source:d:\laptrinh\save\core\button.cpp
+	"Button.h"
+
+1619541749 d:\laptrinh\save\core\button.h
+	"Global.h"
+
+1619628163 d:\laptrinh\save\core\global.h
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	<SDL_ttf.h>
+	<cstdlib>
+	<string>
+	<iostream>
+	<ctime>
+
+1619533212 source:d:\laptrinh\save\core\commonfunc.cpp
+	"CommonFunc.h"
+
+1619533197 d:\laptrinh\save\core\commonfunc.h
+	"Global.h"
+
+1618072497 source:d:\laptrinh\save\core\global.cpp
+	"Global.h"
+
+1619532266 source:d:\laptrinh\save\core\player.cpp
+	"Player.h"
+
+1619532254 d:\laptrinh\save\core\player.h
+	"CommonFunc.h"
+
+1619545572 source:d:\laptrinh\save\core\threat.cpp
+	"Threat.h"
+
+1619537929 d:\laptrinh\save\core\threat.h
+	"CommonFunc.h"
+
+1619627072 source:d:\laptrinh\save\main.cpp
+	"Threat.h"
+	"Player.h"
+	"Global.h"
+	"Button.h"
+	"Text.h"
+
+1619626943 d:\laptrinh\save\core\text.h
+	"Global.h"
+
+1619627380 source:d:\laptrinh\save\core\text.cpp
+	"Text.h"
+
