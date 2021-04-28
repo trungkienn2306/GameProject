@@ -111,8 +111,10 @@ int main(int argc, char* argv[])
         LoadGraphic();
         bool quit_menu = false ;
         int x,y ;
-        Button start_button(START_BUTTON_POSX,START_BUTTON_POSY,START_BUTTON_WIDTH,START_BUTTON_HEIGHT,start_button_texture_1,start_button_texture_2) ;
-        Button quit_button(QUIT_BUTTON_POSX,QUIT_BUTTON_POSY,QUIT_BUTTON_WIDTH,QUIT_BUTTON_HEIGHT,quit_button_texture_1,quit_button_texture_2) ;
+        Button start_button(START_BUTTON_POSX,START_BUTTON_POSY,START_BUTTON_WIDTH,START_BUTTON_HEIGHT
+                            , start_button_texture_1,start_button_texture_2) ;
+        Button quit_button(QUIT_BUTTON_POSX,QUIT_BUTTON_POSY,QUIT_BUTTON_WIDTH,QUIT_BUTTON_HEIGHT
+                           , quit_button_texture_1,quit_button_texture_2) ;
         start_button.Draw();
         quit_button.Draw();
         while(!quit_menu)
@@ -274,7 +276,8 @@ int main(int argc, char* argv[])
 
         //Open replay menu
         LoadReplay();
-        Button replay_button(REPLAY_BUTTON_POSX,REPLAY_BUTTON_POSY,REPLAY_BUTTON_WIDTH,REPLAY_BUTTON_HEIGHT,replay_button_texture_1,replay_button_texture_2);
+        Button replay_button(REPLAY_BUTTON_POSX,REPLAY_BUTTON_POSY,REPLAY_BUTTON_WIDTH,REPLAY_BUTTON_HEIGHT
+                             , replay_button_texture_1,replay_button_texture_2);
         replay_button.Draw();
         quit_button.Draw();
         bool quit_replayMenu = false;
@@ -327,7 +330,8 @@ bool init(SDL_Window* &gWindow, SDL_Renderer* &gRenderer, const int SCREEN_WIDTH
 
     TTF_Init();
 
-    gWindow = SDL_CreateWindow( "CAR GAME", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+    gWindow = SDL_CreateWindow( "CAR GAME", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED
+                               , SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
 
     gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED );
 

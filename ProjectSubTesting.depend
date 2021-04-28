@@ -92,3 +92,47 @@
 1619627380 source:d:\laptrinh\save\core\text.cpp
 	"Text.h"
 
+1619541750 source:d:\laptrinh\myproject\save\core\button.cpp
+	"Button.h"
+
+1619541749 d:\laptrinh\myproject\save\core\button.h
+	"Global.h"
+
+1619631103 d:\laptrinh\myproject\save\core\global.h
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	<SDL_ttf.h>
+	<cstdlib>
+	<string>
+	<iostream>
+	<ctime>
+	<sstream>
+
+1619533212 source:d:\laptrinh\myproject\save\core\commonfunc.cpp
+	"CommonFunc.h"
+
+1619533197 d:\laptrinh\myproject\save\core\commonfunc.h
+	"Global.h"
+
+1618072497 source:d:\laptrinh\myproject\save\core\global.cpp
+	"Global.h"
+
+1619532266 source:d:\laptrinh\myproject\save\core\player.cpp
+	"Player.h"
+
+1619532254 d:\laptrinh\myproject\save\core\player.h
+	"CommonFunc.h"
+
+1619630458 source:d:\laptrinh\myproject\save\core\text.cpp
+	"Text.h"
+
+1619626943 d:\laptrinh\myproject\save\core\text.h
+	"Global.h"
+
+1619545572 source:d:\laptrinh\myproject\save\core\threat.cpp
+	"Threat.h"
+
+1619537929 d:\laptrinh\myproject\save\core\threat.h
+	"CommonFunc.h"
+
