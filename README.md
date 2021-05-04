@@ -4,5 +4,5 @@
 -Tính Năng: Các chướng ngại vật sẽ tăng tốc độ theo thời gian
 
 *Source:
--Các file Text, CommonFunc, Button tham khảo tại https://lazyfoo.net
--Cấu trúc CommonFunc tham khảo tại https://phattrienphanmem123az.com 
+-Hàm CheckCollision tham khảo tại https://phattrienphanmem123az.com 
+-Một số hàm như loadFromFile, render, init,... tham khảo tại https://lazyfoo.net
