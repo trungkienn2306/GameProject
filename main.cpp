@@ -29,28 +29,35 @@ using namespace std;
  SDL_Texture* replay_button_texture_2 = NULL;
 
  int fontsize = 24;
+ int TIMER_POSX = SCREEN_HEIGHT+50;
+ int LEVEL_POSX = SCREEN_WIDTH/2 - 45;
  int TEXT_POSX = 0;
  int TEXT_POSY = 0;
- int TEXT_WIDTH = 0;
- int TEXT_HEIGHT = 0;
-
 
  int THREAT_SPEED = 3;
+ const int ORIGINAL_SPEED = 3;
 
  int start_time = 0;
- int start_score = 0;
  Uint32 current_time = 0;
+ Uint32 timer_time = 0;
+
  int current_score = 0;
+ int start_score = 0;
+
+ int current_level = 0;
+ int start_level = 0;
+
 
 //Starts up SDL and creates window
 bool init(SDL_Window* &gWindow, SDL_Renderer* &gRenderer, const int SCREEN_WIDTH, const int SCREEN_HEIGHT );
 
 //Frees media and shuts down SDL
-void close(SDL_Window* &gWindow, SDL_Renderer* &gRenderer, CommonFunc gBackgroundTexture);
+void close(SDL_Window* &gWindow, SDL_Renderer* &gRenderer);
 
 //Load up only background
 bool checkBackground(SDL_Renderer* &gRenderer);
 
+//Global used background
 CommonFunc gBackgroundTexture;
 
 //The window we'll be rendering to
@@ -62,6 +69,11 @@ SDL_Renderer* gRenderer = NULL;
 //The window events
 SDL_Event gEvent;
 
+//Global used Font
+ TTF_Font* gFont = NULL;
+ Text gTimeTextTexture;
+ Text gScoreTextTexture;
+ Text gLevelTextTexture;
 
 void LoadGraphic()
 {
@@ -78,6 +90,10 @@ void LoadReplay()
     replay_button_texture_2 = IMG_LoadTexture(gRenderer, "img//replay2.png");
 }
 
+void LoadText()
+{
+
+}
 
 int main(int argc, char* argv[])
 {
@@ -119,11 +135,24 @@ int main(int argc, char* argv[])
         quit_button.Draw();
         while(!quit_menu)
         {
+            //Reset game
+            timer_time = SDL_GetTicks()/1000;
+            THREAT_SPEED = ORIGINAL_SPEED;
+            //Initialize score
+            start_time = 0;
+            current_time = 0;
+
+            start_score = 0;
+            current_score = 0;
+
+            start_level = 0;
+            current_level = 0;
+
             while(SDL_PollEvent(&gEvent))
             {
                 if(gEvent.type == SDL_QUIT)
                 {
-                    close(gWindow, gRenderer, gBackgroundTexture);
+                    close(gWindow, gRenderer);
                     return 0;
                 }
                 else
@@ -139,7 +168,7 @@ int main(int argc, char* argv[])
                         SDL_GetMouseState(&x,&y);
                         if(quit_button.ontheButton(x,y))
                         {
-                            close(gWindow, gRenderer, gBackgroundTexture);
+                            close(gWindow, gRenderer);
                             return 0;
                         }
                         if(start_button.ontheButton(x,y))
@@ -158,9 +187,7 @@ int main(int argc, char* argv[])
         explosion.loadFromFile("img//explosion.png", gRenderer);
 
         //Load Text
-        TTF_Font* font = TTF_OpenFont("arial.ttf", fontsize);
-        Text scoreText (TEXT_POSX, TEXT_POSY, TEXT_WIDTH, TEXT_HEIGHT);
-        scoreText.LoadText("SCORE: ", font);
+        gFont = TTF_OpenFont("arial.ttf", fontsize);
 
         //Load Player
         Player player;
@@ -177,11 +204,10 @@ int main(int argc, char* argv[])
         //Open music
         Mix_PlayMusic(music,-1);
 
-        //Initialize score
-        start_time = 0;
-        start_score = 0;
-        current_time = 0;
-        current_score = 0;
+        //Initialize timer
+        stringstream time_text;
+        stringstream score_text;
+        stringstream level_text;
 
         //Main game loop flag
         bool quit = false;
@@ -189,19 +215,20 @@ int main(int argc, char* argv[])
         {
             current_time = SDL_GetTicks()/1000;
             int time_counter = current_time - start_time;
-            if (time_counter >= 5)
+            if (time_counter >= 3)
             {
-                current_score += 1;
+                current_score += 10;
                 start_time = current_time;
             }
 
             int score_counter = current_score - start_score;
-            cerr << current_score << endl;
-            if (score_counter >= 3 )
+           // cerr << current_score << endl;
+            if (score_counter >= 30)
             {
                 THREAT_SPEED += 1;
+                current_level += 1;
                 start_score = current_score;
-                cerr << THREAT_SPEED << endl;
+                //cerr << THREAT_SPEED << endl;
             }
 
 
@@ -218,10 +245,23 @@ int main(int argc, char* argv[])
 
             }
 
+            //Set text to be render
+            time_text.str( "" );
+            time_text << "Time: " << (SDL_GetTicks()/1000) - timer_time;
+            gTimeTextTexture.LoadText(time_text.str().c_str(), gFont);
+
+            score_text.str("");
+            score_text << "Score: " << current_score;
+            gScoreTextTexture.LoadText(score_text.str().c_str(), gFont);
+
+            level_text.str("");
+            level_text << "Level: " << current_level;
+            gLevelTextTexture.LoadText(level_text.str().c_str(), gFont);
+
+
             //Clear Screen
             SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
             SDL_RenderClear( gRenderer );
-
 
             //Render background texture to screen
             backGround_y += 2;
@@ -256,7 +296,9 @@ int main(int argc, char* argv[])
             player.render(gRenderer, NULL, player.playerRect.x, player.playerRect.y);
 
             //Draw Text
-            scoreText.Draw();
+            gTimeTextTexture.Draw(TIMER_POSX, TEXT_POSY);
+            gScoreTextTexture.Draw(TEXT_POSX, TEXT_POSY);
+            gLevelTextTexture.Draw(LEVEL_POSX, TEXT_POSY);
 
             SDL_Delay(10);
             //Update screen
@@ -266,12 +308,12 @@ int main(int argc, char* argv[])
         explosion.render(gRenderer, NULL, player.playerRect.x-25, player.playerRect.y-40);
         SDL_RenderPresent(gRenderer);
 
+        //Close Font
         Mix_HaltMusic();
-        TTF_CloseFont(font);
+        TTF_CloseFont(gFont);
 
         //Game over music
         Mix_PlayMusic(gameover, 1);
-
         delete [] ptr_MoreThreats;
 
         //Open replay menu
@@ -287,7 +329,7 @@ int main(int argc, char* argv[])
             {
                 if(gEvent.type == SDL_QUIT)
                 {
-                    close(gWindow, gRenderer, gBackgroundTexture);
+                    close(gWindow, gRenderer);
                     return 0;
                 }
                 else
@@ -303,7 +345,7 @@ int main(int argc, char* argv[])
                         SDL_GetMouseState(&x,&y);
                         if(quit_button.ontheButton(x,y))
                         {
-                            close(gWindow, gRenderer, gBackgroundTexture);
+                            quit = true;
                             return 0;
                         }
                         if(replay_button.ontheButton(x,y))
@@ -317,7 +359,7 @@ int main(int argc, char* argv[])
         }
         SDL_DestroyWindow( gWindow );
     }
-    close(gWindow, gRenderer, gBackgroundTexture);
+    close(gWindow, gRenderer);
     return 0;
 }
 
@@ -351,10 +393,13 @@ bool checkBackground(SDL_Renderer* &gRenderer)
     return true;
 }
 
-void close(SDL_Window* &gWindow, SDL_Renderer* &gRenderer, CommonFunc gBackgroundTexture)
+void close(SDL_Window* &gWindow, SDL_Renderer* &gRenderer)
 {
 	//Free loaded images
 	gBackgroundTexture.Free();
+	gTimeTextTexture.Free();
+	gScoreTextTexture.Free();
+	gLevelTextTexture.Free();
 	SDL_DestroyTexture(start_button_texture_1);
     SDL_DestroyTexture(start_button_texture_2);
     SDL_DestroyTexture(quit_button_texture_1);
@@ -363,6 +408,8 @@ void close(SDL_Window* &gWindow, SDL_Renderer* &gRenderer, CommonFunc gBackgroun
     start_button_texture_2= NULL;
     quit_button_texture_1 = NULL;
     quit_button_texture_2 = NULL;
+    TTF_CloseFont(gFont);
+    gFont = NULL;
 
 	//Destroy window
 	SDL_DestroyRenderer( gRenderer );

@@ -48,7 +48,7 @@
 1619541749 d:\laptrinh\save\core\button.h
 	"Global.h"
 
-1619628163 d:\laptrinh\save\core\global.h
+1620115646 d:\laptrinh\save\core\global.h
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
@@ -57,6 +57,7 @@
 	<string>
 	<iostream>
 	<ctime>
+	<sstream>
 
 1619533212 source:d:\laptrinh\save\core\commonfunc.cpp
 	"CommonFunc.h"
@@ -79,17 +80,17 @@
 1619537929 d:\laptrinh\save\core\threat.h
 	"CommonFunc.h"
 
-1619627072 source:d:\laptrinh\save\main.cpp
+1620117919 source:d:\laptrinh\save\main.cpp
 	"Threat.h"
 	"Player.h"
 	"Global.h"
 	"Button.h"
 	"Text.h"
 
-1619626943 d:\laptrinh\save\core\text.h
+1620116645 d:\laptrinh\save\core\text.h
 	"Global.h"
 
-1619627380 source:d:\laptrinh\save\core\text.cpp
+1620116645 source:d:\laptrinh\save\core\text.cpp
 	"Text.h"
 
 1619541750 source:d:\laptrinh\myproject\save\core\button.cpp

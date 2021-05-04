@@ -34,6 +34,7 @@ const int COLOR_KEY_R = 255;
 const int COLOR_KEY_G = 255;
 const int COLOR_KEY_B = 255;
 
+extern TTF_Font* gFont;
 
 extern int START_BUTTON_POSX;
 extern int START_BUTTON_POSY;

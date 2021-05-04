@@ -6,15 +6,17 @@
 class Text
 {
 private:
-    int posX;
-    int posY;
     int width;
     int height;
     SDL_Texture* textTexture;
 public:
-    Text(int _posX, int _posY, int _width, int _height);
-    void Draw();
+    ~Text();
+    Text();
+    void Draw(const int &posX,const int &posY);
     bool LoadText(const std::string& path, TTF_Font* font);
+    void Free();
+    int getWidth();
+    int getHeight();
 };
 
 
